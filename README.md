@@ -1,9 +1,11 @@
-1. install python
+# install python
 
-2. install dependence
-
+# install dependence
+```bash
 pip install -r requirements
+```
 
-3. run
-
+# run
+```bash
 python script_name.py
+```
