@@ -5,5 +5,5 @@ pip install -r requirements
 
 # Run the script
 ```bash
-python test.py
+python main.py
 ```
